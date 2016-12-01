@@ -33,20 +33,9 @@ namespace Gadgeothek
 
             var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
 
-            var gadgets = service.GetAllGadgets();
-            List<Gadget> AllG = new List<Gadget>();
-            foreach (Gadget gadget in gadgets)
-            {
-                AllG.Add(new Gadget() { Name = gadget.Name, Price = gadget.Price, Condition = gadget.Condition, InventoryNumber = gadget.InventoryNumber, Manufacturer = gadget.Manufacturer });
-            }
-            allGadgets.ItemsSource = AllG;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(allGadgets.ItemsSource);
-            view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription("Price", ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription("Condition", ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription("InventoryNumber", ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription("Manufacturer", ListSortDirection.Ascending));
+            
 
+            showGadgets(service, allGadgets);
 
             var customers = service.GetAllCustomers();
             var reservations = service.GetAllReservations();
@@ -167,24 +156,49 @@ namespace Gadgeothek
 
         private void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            Window confirmationWindow = new Window();
 
-
-            var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
-            stackPanel.Children.Add(new Label { Content = "U Sure?" });
-            stackPanel.Children.Add(new Button { Name = "Confirm", Content = "Confirm" });
-            stackPanel.Children.Add(new Button { Name = "Cancel", Content = "Cancel" });
-            Button asdf = new Button();
-            confirmationWindow.Content = stackPanel;
-            confirmationWindow.Show();
-            this.Hide();
+            MessageBoxResult result = MessageBox.Show("U Sure?", "My App", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    deleteGadgets();
+                    break;
+                case MessageBoxResult.No:
+                    MessageBox.Show("Oh well, too bad!", "My App");
+                    break;
+            }
         }
 
-        private void test()
+        private void deleteGadgets()
         {
+            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
 
+            foreach (Gadget d in toRemoveGadgets)
+            {
+                service.DeleteGadget(d);
+
+            }
+            showGadgets(service, allGadgets);
         }
 
+        private void showGadgets(LibraryAdminService la, ListView lv)
+        {
+            var gadgets = la.GetAllGadgets();
+            List<Gadget> AllG = new List<Gadget>();
+            foreach (Gadget gadget in gadgets)
+            {
+                AllG.Add(new Gadget() { Name = gadget.Name, Price = gadget.Price, Condition = gadget.Condition, InventoryNumber = gadget.InventoryNumber, Manufacturer = gadget.Manufacturer });
+            }
+            
+            lv.ItemsSource = AllG;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(allGadgets.ItemsSource);
+            view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("Price", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("Condition", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("InventoryNumber", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("Manufacturer", ListSortDirection.Ascending));
+
+        }
 
         public class AllOfCustomer
         {
