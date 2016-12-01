@@ -24,7 +24,7 @@ namespace ch.hsr.wpf.gadgeothek.runner
             Console.WriteLine("<Press CTRL + C to terminate the app>");
 
 
-            var url = "http://localhost:8080";
+            var url = "http://mge1.dev.ifs.hsr.ch/";
 
             // web socket connection to listen to changes:
             var client = new websocket.WebSocketClient(url);

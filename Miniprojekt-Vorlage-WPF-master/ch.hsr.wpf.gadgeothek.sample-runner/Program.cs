@@ -11,11 +11,11 @@ namespace ch.hsr.wpf.gadgeothek.runner
     {
         static void Main(string[] args)
         {
-            var url = "http://localhost:8080";
+            var url = "http://mge1.dev.ifs.hsr.ch/";
 
             // enable low-level HTTP-call logging by uncommenting the following line:
             //RestServiceBase.IsLogging = true;
-            
+
 
             var sample = new SampleUsage(url);
 
