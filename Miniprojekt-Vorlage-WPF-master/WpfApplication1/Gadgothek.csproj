@@ -102,6 +102,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ch.hsr.wpf.gadgeothek\ch.hsr.wpf.gadgeothek.csproj">
+      <Project>{ac1eeaa5-ea41-46fc-8afe-f0cf4b936abb}</Project>
+      <Name>ch.hsr.wpf.gadgeothek</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
