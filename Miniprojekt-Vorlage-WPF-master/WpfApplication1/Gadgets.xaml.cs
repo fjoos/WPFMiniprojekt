@@ -130,12 +130,15 @@ namespace Gadgeothek
             stackPanel.Children.Add(new Label { Content = "U Sure?" });
             stackPanel.Children.Add(new Button { Name = "Confirm", Content = "Confirm" });
             stackPanel.Children.Add(new Button { Name = "Cancel", Content = "Cancel" });
-
+            Button asdf = new Button();
             confirmationWindow.Content = stackPanel;
             confirmationWindow.Show();
             this.Hide();
         }
 
+        private void test()
+        {
 
+        }
     }
 }
