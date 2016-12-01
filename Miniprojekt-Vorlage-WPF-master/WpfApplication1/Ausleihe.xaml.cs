@@ -15,7 +15,7 @@ using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
 using System.ComponentModel;
 
-namespace WpfApplication1
+namespace Gadgeothek
 {
     /// <summary>
     /// Interaction logic for Ausleihe.xaml
