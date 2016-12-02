@@ -4,8 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gadgeothek"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:conditions="clr-namespace:ch.hsr.wpf.gadgeothek.domain;assembly=ch.hsr.wpf.gadgeothek"
         mc:Ignorable="d"
-        Title="Gadgeothek" Height="1000" Width="1200">
+        Title="Gadgeothek" Height="700" Width="1200">
+    <Window.Resources>
+
+        <ObjectDataProvider x:Key="getConditions"
+                            MethodName="GetValues" 
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="conditions:Condition"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+    </Window.Resources>
     <Grid>
         <TabControl>
         <TabItem Header="Gadgets">
@@ -53,8 +66,43 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Click="Button_Click_Delete">Delete</Button>
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Click="Button_Click_Delete">Delete</Button>
+                        <Label Grid.Row="1">Neu Hinzufügen</Label>
+                        <Label Grid.Row="2">Name</Label>
+                        <TextBox Grid.Row="2" Grid.Column="1" Name="newGadgetName"></TextBox>
+                        <Label Grid.Row="3">Price</Label>
+                        <TextBox Grid.Row="3" Grid.Column="1" Name="newGadgetPrice" ></TextBox>
+                        <Label Grid.Row="4">Condition</Label>
 
+
+                        <ComboBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Name="newGadgetCondition"
+SelectedIndex="0" ItemsSource="{Binding Source={StaticResource getConditions}}">
+                        </ComboBox>
+                        
+                        
+                        <Label Grid.Row="5">InventoryNumber</Label>
+                        <TextBox Grid.Row="5" Grid.Column="1" Name="newGadgetInventory"></TextBox>
+                        <Label Grid.Row="6">Manufacturer</Label>
+                        <TextBox Grid.Row="6" Grid.Column="1" Name="newGadgetManufacturer"></TextBox>
+                        <Button Grid.Row="7" Click="addNewGadget">Hinzufügen</Button>
+                    </Grid>
+                    
+                    
                 </StackPanel>
             </TabItem>
         <TabItem Header="Ausleihe">

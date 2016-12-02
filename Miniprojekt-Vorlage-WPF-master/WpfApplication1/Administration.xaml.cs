@@ -34,8 +34,14 @@ namespace Gadgeothek
             var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
 
             
-
+            /*
+             * Gadgets
+             */
             showGadgets(service, allGadgets);
+
+            /*
+             * Ausleihe
+             */
 
             var customers = service.GetAllCustomers();
             var reservations = service.GetAllReservations();
@@ -81,6 +87,8 @@ namespace Gadgeothek
             view4.Filter = UserFilter3;
         }
 
+
+
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
 
@@ -102,6 +110,7 @@ namespace Gadgeothek
             allGadgets.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
 
         }
+
         public class SortAdorner : Adorner
         {
             private static Geometry ascGeometry =
@@ -199,6 +208,46 @@ namespace Gadgeothek
             view.SortDescriptions.Add(new SortDescription("Manufacturer", ListSortDirection.Ascending));
 
         }
+
+        private void addNewGadget(object sender, RoutedEventArgs e)
+        {
+
+            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+            Gadget gadgetToAdd = new Gadget
+            {
+                Name = newGadgetName.Text,
+                Price = Convert.ToDouble(newGadgetPrice.Text),
+                Condition = ch.hsr.wpf.gadgeothek.domain.Condition.New,
+                InventoryNumber = newGadgetInventory.Text,
+                Manufacturer = newGadgetManufacturer.Text
+            };
+            service.AddGadget(gadgetToAdd);
+            showGadgets(service, allGadgets);
+             /*  
+           foreach(String d in Enum.GetValues(typeof(ch.hsr.wpf.gadgeothek.domain.Condition))){
+                if (d.Equals(newGadgetCondition.Text))
+                {
+                    
+                }
+            }*/
+
+
+            /*
+             * 
+             *  public string InventoryNumber { get; set; }
+        public Condition Condition { get; set; }
+        public double Price { get; set; }
+        public string Manufacturer { get; set; }
+        public string Name { get; set; }
+             * 
+             * 
+             * */
+        }
+
+
+        /*
+         * Ausleihe
+         */
 
         public class AllOfCustomer
         {
@@ -401,6 +450,7 @@ namespace Gadgeothek
             lv.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
 
+   
     }
 }
 
