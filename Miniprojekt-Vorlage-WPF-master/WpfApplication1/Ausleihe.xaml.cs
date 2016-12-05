@@ -105,7 +105,8 @@ public class ReserveByUser
 
 
             InitializeComponent();
-            var service = new LibraryAdminService("http://mge10.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+
 
             var gadgets = service.GetAllGadgets();        
             var customers = service.GetAllCustomers();
