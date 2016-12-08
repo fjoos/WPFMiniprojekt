@@ -55,11 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Ausleihe.xaml">
+    <Compile Include="Ausleihe.xaml.cs">
+      <DependentUpon>Ausleihe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ausleihe.xaml.cs">
+      <DependentUpon>Ausleihe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gadgets.xaml.cs">
+      <DependentUpon>Gadgets.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Administration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Administration.xaml">
+    <Page Include="Ausleihe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,9 +80,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Ausleihe.xaml.cs">
-      <DependentUpon>Ausleihe.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Administration.xaml.cs">
       <DependentUpon>Administration.xaml</DependentUpon>
     </Compile>
@@ -81,6 +87,14 @@
       <DependentUpon>Gadgets.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Ausleihe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Gadgets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -114,6 +128,10 @@
       <Project>{ac1eeaa5-ea41-46fc-8afe-f0cf4b936abb}</Project>
       <Name>ch.hsr.wpf.gadgeothek</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
