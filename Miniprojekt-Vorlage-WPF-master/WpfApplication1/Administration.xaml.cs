@@ -31,7 +31,7 @@ namespace Gadgeothek
         {
             InitializeComponent();
 
-            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService("http://mge8.dev.ifs.hsr.ch/");
 
             
             /*
@@ -220,6 +220,7 @@ namespace Gadgeothek
                 Condition = ch.hsr.wpf.gadgeothek.domain.Condition.New,
                 InventoryNumber = newGadgetInventory.Text,
                 Manufacturer = newGadgetManufacturer.Text
+               
             };
             service.AddGadget(gadgetToAdd);
             showGadgets(service, allGadgets);

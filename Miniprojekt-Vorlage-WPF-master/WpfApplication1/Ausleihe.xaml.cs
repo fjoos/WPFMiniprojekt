@@ -105,7 +105,7 @@ public class ReserveByUser
 
 
             InitializeComponent();
-            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService("http://mge6.dev.ifs.hsr.ch/");
 
 
             var gadgets = service.GetAllGadgets();        
@@ -214,7 +214,6 @@ public class ReserveByUser
             {
                 CollectionViewSource.GetDefaultView(GadgetsByUser.ItemsSource).Refresh();
             }
-
             if (LeansByGadget.ItemsSource != null)
             {
                 CollectionViewSource.GetDefaultView(LeansByGadget.ItemsSource).Refresh();
