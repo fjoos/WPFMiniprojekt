@@ -37,16 +37,9 @@ namespace Gadgeothek
 
             MyGadgets = new ObservableCollection<Gadget>(service.GetAllGadgets());
             DataContext = this;
-
-            /*
-             * Ausleihe
-             */
-
         }
 
-
-
-       
+        
         public class SortAdorner : Adorner
         {
             private static Geometry ascGeometry =
