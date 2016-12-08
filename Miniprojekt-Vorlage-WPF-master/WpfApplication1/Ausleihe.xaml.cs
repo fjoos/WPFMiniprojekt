@@ -78,15 +78,13 @@ public class ReserveByUser
         public string LeanLean { get; set; }
         public string BackTillLean { get; set; }
         public bool ToBackLean { get; set; }
-        public bool ReservedLean { get; set; }
 
-        public LoansByUser(string name, string leanerName, DateTime? backTill, bool toBack, bool isRes)
+        public LoansByUser(string name, string leanerName, DateTime? backTill, bool toBack)
         {
             NameLean = name;
             LeanLean = leanerName;
             BackTillLean = backTill.ToString();
             ToBackLean = toBack;
-            ReservedLean = isRes;
         }
 
     }
@@ -102,10 +100,8 @@ public class ReserveByUser
         public Ausleihe()
         {
 
-
-
             InitializeComponent();
-            var service = new LibraryAdminService("http://mge6.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
 
 
             var gadgets = service.GetAllGadgets();        
@@ -114,7 +110,7 @@ public class ReserveByUser
             var loans = service.GetAllLoans();
 
             
-
+     
             List<AllOfCustomer> allCustomer = new List<AllOfCustomer>();
             foreach(Customer c in customers)
             {
@@ -125,7 +121,6 @@ public class ReserveByUser
             GadgetsByUser.ItemsSource = allCustomer;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(GadgetsByUser.ItemsSource);
             view.Filter = UserFilter1;
-
 
 
             List<ReserveByUser> allReservations = new List<ReserveByUser>();
@@ -284,6 +279,9 @@ public class ReserveByUser
             AdornerLayer.GetAdornerLayer(listViewSortCol).Add(listViewSortAdorner);
             lv.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
+
+
+
 
     }
     public class SortAdorner : Adorner

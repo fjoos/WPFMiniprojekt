@@ -3,6 +3,7 @@ using ch.hsr.wpf.gadgeothek.service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,8 @@ namespace Gadgeothek.Views
         private SortAdorner listViewSortAdorner = null;
         public Ausleihe()
         {
-            var service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
+
             InitializeComponent();
 
             var customers = service.GetAllCustomers();
@@ -74,74 +76,7 @@ namespace Gadgeothek.Views
             view4.Filter = UserFilter3;
         }
 
-        public class AllOfCustomer
-        {
 
-            public string KundenNr { get; set; }
-            public string Name { get; set; }
-            public string Reservations { get; set; }
-            public string Loans { get; set; }
-            public bool ToBack { get; set; }
-
-            public AllOfCustomer(string knr, string name, List<Reservation> res, List<Loan> loan, bool toB)
-            {
-                foreach (Reservation r in res)
-                {
-                    if (r.Gadget != null)
-                    {
-                        Reservations += r.Gadget.Name + ", ";
-                    }
-                }
-
-                foreach (Loan l in loan)
-                {
-                    if (l.Gadget != null)
-                    {
-                        Loans += l.Gadget.Name + ", ";
-                    }
-                }
-
-                KundenNr = knr;
-                Name = name;
-                ToBack = toB;
-            }
-
-        }
-
-        public class ReserveByUser
-        {
-            public string resCustomer { get; set; }
-            public string NameRes { get; set; }
-            public string WaitSizeRes { get; set; }
-            public bool LeanRes { get; set; }
-
-            public ReserveByUser(string customer, string name, int resSize, bool isRes)
-            {
-                resCustomer = customer;
-                NameRes = name;
-                WaitSizeRes = resSize.ToString();
-                LeanRes = isRes;
-            }
-        }
-
-        public class LoansByUser
-        {
-            public string NameLean { get; set; }
-            public string LeanLean { get; set; }
-            public string BackTillLean { get; set; }
-            public bool ToBackLean { get; set; }
-            public bool ReservedLean { get; set; }
-
-            public LoansByUser(string name, string leanerName, DateTime? backTill, bool toBack, bool isRes)
-            {
-                NameLean = name;
-                LeanLean = leanerName;
-                BackTillLean = backTill.ToString();
-                ToBackLean = toBack;
-                ReservedLean = isRes;
-            }
-
-        }
 
         public bool getResByGadget(Loan l, List<Reservation> AllRes)
         {
@@ -154,7 +89,6 @@ namespace Gadgeothek.Views
             }
             return false;
         }
-
         public List<Reservation> getReservations(Customer c, List<Reservation> AllRes)
         {
             List<Reservation> res = new List<Reservation>();
@@ -168,8 +102,6 @@ namespace Gadgeothek.Views
 
             return res;
         }
-
-
         public List<Loan> getLoans(Customer c, List<Loan> AllLoans)
         {
 
@@ -184,7 +116,6 @@ namespace Gadgeothek.Views
 
             return loans;
         }
-
         public bool getToBackInformations(List<Loan> aList)
         {
             foreach (Loan l in aList)
@@ -248,7 +179,6 @@ namespace Gadgeothek.Views
         {
             sort(sender, e, LeansByGadget);
         }
-
         private void ReservationsByUser_SelectionChanged(object sender, RoutedEventArgs e)
         {
             sort(sender, e, ReservationsByUsers);
@@ -276,4 +206,72 @@ namespace Gadgeothek.Views
         }
 
     }
+}
+public class AllOfCustomer
+{
+
+    public string KundenNr { get; set; }
+    public string Name { get; set; }
+    public string Reservations { get; set; }
+    public string Loans { get; set; }
+    public bool ToBack { get; set; }
+
+    public AllOfCustomer(string knr, string name, List<Reservation> res, List<Loan> loan, bool toB)
+    {
+        foreach (Reservation r in res)
+        {
+            if (r.Gadget != null)
+            {
+                Reservations += r.Gadget.Name + ", ";
+            }
+        }
+
+        foreach (Loan l in loan)
+        {
+            if (l.Gadget != null)
+            {
+                Loans += l.Gadget.Name + ", ";
+            }
+        }
+
+        KundenNr = knr;
+        Name = name;
+        ToBack = toB;
+    }
+
+}
+
+public class ReserveByUser
+{
+    public string resCustomer { get; set; }
+    public string NameRes { get; set; }
+    public string WaitSizeRes { get; set; }
+    public bool LeanRes { get; set; }
+
+    public ReserveByUser(string customer, string name, int resSize, bool isRes)
+    {
+        resCustomer = customer;
+        NameRes = name;
+        WaitSizeRes = resSize.ToString();
+        LeanRes = isRes;
+    }
+}
+
+public class LoansByUser
+{
+    public string NameLean { get; set; }
+    public string LeanLean { get; set; }
+    public string BackTillLean { get; set; }
+    public bool ToBackLean { get; set; }
+    public bool ReservedLean { get; set; }
+
+    public LoansByUser(string name, string leanerName, DateTime? backTill, bool toBack, bool isRes)
+    {
+        NameLean = name;
+        LeanLean = leanerName;
+        BackTillLean = backTill.ToString();
+        ToBackLean = toBack;
+        ReservedLean = isRes;
+    }
+
 }

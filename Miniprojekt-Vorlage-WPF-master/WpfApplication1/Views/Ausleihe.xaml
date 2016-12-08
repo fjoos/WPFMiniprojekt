@@ -87,22 +87,23 @@
             <ListView x:Name="LeansByGadget" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="489" Margin="0,28,0,0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="97" DisplayMemberBinding="{Binding NameLean}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="Gadget" Click="LoanssByUser_SelectionChanged">Gadget</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
-                        <GridViewColumn Width="97" DisplayMemberBinding="{Binding LeanLean}">
+                        <GridViewColumn Width="122" DisplayMemberBinding="{Binding LeanLean}">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Tag="Ausleiher" Click="LoanssByUser_SelectionChanged">Ausleiher</GridViewColumnHeader>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="97" DisplayMemberBinding="{Binding BackTillLean}">
+                        <GridViewColumn Width="122" DisplayMemberBinding="{Binding NameLean}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Gadget" Click="LoanssByUser_SelectionChanged">Gadget</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="122" DisplayMemberBinding="{Binding BackTillLean}">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Tag="Zurück bis" Click="LoanssByUser_SelectionChanged">Zurück bis</GridViewColumnHeader>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="97">
+                        <GridViewColumn Width="122">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Tag="Fällig" Click="LoanssByUser_SelectionChanged">Fällig</GridViewColumnHeader>
                             </GridViewColumn.Header>
@@ -112,16 +113,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="97">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="Reserviert" Click="LoanssByUser_SelectionChanged">Reserviert</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding ReservedLean}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                    
                     </GridView>
                 </ListView.View>
             </ListView>
