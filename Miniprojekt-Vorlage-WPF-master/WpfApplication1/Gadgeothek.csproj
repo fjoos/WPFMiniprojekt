@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HelperClasses\AllOfCustomer.cs" />
+    <Compile Include="HelperClasses\LoansByUser.cs" />
+    <Compile Include="HelperClasses\ReserveByUser.cs" />
     <Compile Include="Views\Ausleihe.xaml.cs">
       <DependentUpon>Ausleihe.xaml</DependentUpon>
     </Compile>

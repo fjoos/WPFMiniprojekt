@@ -3,6 +3,7 @@ using ch.hsr.wpf.gadgeothek.service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Gadgeothek.Views
         public Gadgets()
         {
             InitializeComponent();
-            var service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
             showGadgets(service, allGadgets);
         }
 
@@ -86,7 +87,7 @@ namespace Gadgeothek.Views
 
         private void deleteGadgets()
         {
-            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
 
             foreach (Gadget d in toRemoveGadgets)
             {
@@ -119,7 +120,7 @@ namespace Gadgeothek.Views
         private void addNewGadget(object sender, RoutedEventArgs e)
         {
 
-            var service = new LibraryAdminService("http://mge1.dev.ifs.hsr.ch/");
+            var service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
             Gadget gadgetToAdd = new Gadget
             {
                 Name = newGadgetName.Text,
