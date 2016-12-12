@@ -15,6 +15,7 @@ using ch.hsr.wpf.gadgeothek.domain;
 using ch.hsr.wpf.gadgeothek.service;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Gadgeothek.ViewModel;
 
 namespace Gadgeothek
 {
@@ -23,20 +24,12 @@ namespace Gadgeothek
     /// </summary>
     public partial class Administration : Window
     {
-        private GridViewColumnHeader listViewSortCol = null;
-        private SortAdorner listViewSortAdorner = null;
-        List<Gadget> toRemoveGadgets = new List<Gadget>();
-
-        public ObservableCollection<Gadget> MyGadgets { get; set; }
-
-        public Administration()
+ 
+      public Administration()
         {
             InitializeComponent();
-
-            var service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
-
-            MyGadgets = new ObservableCollection<Gadget>(service.GetAllGadgets());
             DataContext = this;
+
         }
 
         
@@ -79,18 +72,7 @@ namespace Gadgeothek
             }
         }
 
-        private void allGadgets_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (Gadget item in e.RemovedItems)
-            {
-                toRemoveGadgets.Remove(item);
-            }
-
-            foreach (Gadget item in e.AddedItems)
-            {
-                toRemoveGadgets.Add(item);
-            }
-        }
+        
     }
 }
 

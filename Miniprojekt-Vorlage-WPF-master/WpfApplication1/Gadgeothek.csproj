@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ViewModelAdmin.cs" />
+    <Compile Include="ViewModel\ViewModelGadgets.cs" />
     <Compile Include="Views\Ausleihe.xaml.cs">
       <DependentUpon>Ausleihe.xaml</DependentUpon>
     </Compile>

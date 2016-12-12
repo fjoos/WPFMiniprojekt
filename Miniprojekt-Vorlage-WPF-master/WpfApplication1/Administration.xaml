@@ -18,6 +18,6 @@
             <TabItem Header="Ausleihe">
                 <Views:Ausleihe x:Name="ausleiheView"/>
             </TabItem>
-        </TabControl>
+           </TabControl>
     </Grid>
 </Window>
