@@ -59,6 +59,8 @@
     <Compile Include="HelperClasses\AllOfCustomer.cs" />
     <Compile Include="HelperClasses\LoansByUser.cs" />
     <Compile Include="HelperClasses\ReserveByUser.cs" />
+    <Compile Include="ViewModel\ViewModelAdmin.cs" />
+    <Compile Include="ViewModel\ViewModelGadgets.cs" />
     <Compile Include="Views\Ausleihe.xaml.cs">
       <DependentUpon>Ausleihe.xaml</DependentUpon>
     </Compile>
