@@ -35,7 +35,7 @@ namespace Gadgeothek.ViewModel
         public void toDeleteGadget(Gadget gadget)
         {
 
-            service.DeleteGadget(gadget);
+            //service.DeleteGadget(gadget);
             allGadgets.Remove(gadget);
         }
         

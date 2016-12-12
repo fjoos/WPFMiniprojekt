@@ -26,12 +26,13 @@ namespace Gadgeothek.Views
     {
         private List<Gadget> toRemoveGadgets = new List<Gadget>();
         LibraryAdminService service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
-        ViewModelGadgets gadgetModel = new ViewModelGadgets();
+        ViewModelGadgets gadgetModel;
 
         public Gadgets()
         {
             InitializeComponent();
-            DataContext = new ViewModelGadgets();
+            gadgetModel = new ViewModelGadgets();
+            DataContext = gadgetModel;
             
         }
 
@@ -56,12 +57,12 @@ namespace Gadgeothek.Views
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    foreach (ListViewItem eachItem in gadgetView.SelectedItems)
-                    {
-                        Gadget gadget = (Gadget)eachItem.Content;
-                        gadgetModel.toDeleteGadget(gadget);
-                    }
 
+                    while (gadgetView.SelectedItems.Count > 0)
+                    {
+                        gadgetModel.toDeleteGadget((Gadget)gadgetView.SelectedItem);
+                    }
+                      
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -69,17 +70,6 @@ namespace Gadgeothek.Views
 
         }
 
-        public void allGadgets_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (Gadget item in e.RemovedItems)
-            {
-                toRemoveGadgets.Remove(item);
-            }
-
-            foreach (Gadget item in e.AddedItems)
-            {
-                toRemoveGadgets.Add(item);
-            }
-        }
+       
     }
 }
