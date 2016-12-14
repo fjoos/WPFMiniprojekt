@@ -57,12 +57,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="HelperClasses\AllOfCustomer.cs" />
+    <Compile Include="HelperClasses\GadgetToAdd.cs" />
     <Compile Include="HelperClasses\LoansByUser.cs" />
     <Compile Include="HelperClasses\ReserveByUser.cs" />
     <Compile Include="ViewModel\ViewModelAdmin.cs" />
     <Compile Include="ViewModel\ViewModelGadgets.cs" />
     <Compile Include="Views\Ausleihe.xaml.cs">
       <DependentUpon>Ausleihe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeGadget.xaml.cs">
+      <DependentUpon>ChangeGadget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Gadgets.xaml.cs">
       <DependentUpon>Gadgets.xaml</DependentUpon>
@@ -79,6 +83,10 @@
       <DependentUpon>Administration.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Ausleihe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangeGadget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

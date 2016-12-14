@@ -16,40 +16,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Gadgeothek.ViewModel;
+using System.Configuration;
 
 namespace Gadgeothek.Views
 {
-    /// <summary>
-    /// Interaction logic for Gadgets.xaml
-    /// </summary>
+
     public partial class Gadgets : UserControl
     {
-        private List<Gadget> toRemoveGadgets = new List<Gadget>();
-        LibraryAdminService service = new LibraryAdminService("http://mge5.dev.ifs.hsr.ch/");
         ViewModelGadgets gadgetModel;
-
         public Gadgets()
         {
             InitializeComponent();
             gadgetModel = new ViewModelGadgets();
             DataContext = gadgetModel;
-            
         }
 
-
-        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
-        {
-
-            GridViewColumnHeader column = (sender as GridViewColumnHeader);
-            string sortBy = column.Tag.ToString();
-          
-
-        }
-
-        private void addNewGadget(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void deleteGadget(object sender, RoutedEventArgs e)
         {
@@ -57,12 +38,10 @@ namespace Gadgeothek.Views
             switch (result)
             {
                 case MessageBoxResult.Yes:
-
                     while (gadgetView.SelectedItems.Count > 0)
                     {
                         gadgetModel.toDeleteGadget((Gadget)gadgetView.SelectedItem);
                     }
-                      
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -70,6 +49,23 @@ namespace Gadgeothek.Views
 
         }
 
-       
+        private void editGadget(object sender, RoutedEventArgs e)
+        {
+            
+            string content = (sender as Button).Content.ToString();
+            Window editWindow;
+            if (content.Equals("Edit") && gadgetView.SelectedItems.Count == 1)
+            {
+                editWindow = new ChangeGadget((Gadget)gadgetView.SelectedItem, "Save");
+                editWindow.ShowDialog();
+            }
+            else if(content.Equals("Add new Gadget"))
+            {
+                editWindow = new ChangeGadget(new Gadget(), "Add");
+                editWindow.ShowDialog();
+            }
+
+            
+        }
     }
 }
