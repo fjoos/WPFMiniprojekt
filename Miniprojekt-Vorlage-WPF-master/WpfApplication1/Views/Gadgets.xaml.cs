@@ -56,12 +56,12 @@ namespace Gadgeothek.Views
             Window editWindow;
             if (content.Equals("Edit") && gadgetView.SelectedItems.Count == 1)
             {
-                editWindow = new ChangeGadget((Gadget)gadgetView.SelectedItem, "Save");
+                editWindow = new ChangeGadget(gadgetModel, (Gadget)gadgetView.SelectedItem, "Save");
                 editWindow.ShowDialog();
             }
             else if(content.Equals("Add new Gadget"))
             {
-                editWindow = new ChangeGadget(new Gadget(), "Add");
+                editWindow = new ChangeGadget(gadgetModel, new Gadget(), "Add");
                 editWindow.ShowDialog();
             }
 

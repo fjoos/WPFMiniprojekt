@@ -29,15 +29,10 @@ namespace Gadgeothek.ViewModel
           
         }
 
-        public ViewModelGadgets(Gadget selectedItem, string buttonName)
-        {
-            selectedGadget = selectedItem;
-            Option = buttonName;
-        }
-
         public ObservableCollection<Gadget> AllGadgets
         {
             get { return allGadgets; }
+            set { allGadgets = value; }
         }
 
         public Gadget SelectedGadget {
@@ -59,18 +54,22 @@ namespace Gadgeothek.ViewModel
         public void addGadget(Gadget gadget)
         {
             gadget = SelectedGadget;
-            MessageBoxResult result = MessageBox.Show(gadget.Name, "Kontrollfrage", MessageBoxButton.YesNo);
-          
-            allGadgets.Add(gadget);
+            AllGadgets.Add(gadget);
            //service.AddGadget(gadget);
             
         }
 
         public void saveGadget(Gadget modifiedGadget)
         {
-            Gadget test = SelectedGadget;
-            allGadgets.Insert(allGadgets.IndexOf(modifiedGadget), test);
+            Gadget gadget = SelectedGadget;
+            AllGadgets.Insert(allGadgets.IndexOf(modifiedGadget), gadget);
             //service.UpdateGadget(test);
+        }
+
+        public void setOptions(Gadget modifiedGadget, String buttonName)
+        {
+            selectedGadget = modifiedGadget;
+            Option = buttonName;
         }
     }
 }

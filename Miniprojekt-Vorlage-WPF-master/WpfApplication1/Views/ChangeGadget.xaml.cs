@@ -20,11 +20,12 @@ namespace Gadgeothek.Views
     {
         private Gadget modifiedGadget;
         private ViewModelGadgets gadgetModel;
-        public ChangeGadget(Gadget selectedItem, String buttonName)
+        public ChangeGadget(ViewModelGadgets gadgetModel, Gadget selectedItem, String buttonName)
         {
             this.modifiedGadget = selectedItem;
+            this.gadgetModel = gadgetModel;
             InitializeComponent();
-            gadgetModel  = new ViewModelGadgets(modifiedGadget, buttonName);
+            gadgetModel.setOptions(modifiedGadget, buttonName);
             DataContext = gadgetModel;
             
         }
