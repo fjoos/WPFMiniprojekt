@@ -18,8 +18,8 @@ namespace Gadgeothek.ViewModel
 
     public class ViewModelGadgets : ViewModelAdmin
     {
-        private ObservableCollection<Gadget> allGadgets { get; set; }
-        LibraryAdminService service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
+        private ObservableCollection<Gadget> allGadgets;
+        private LibraryAdminService service = new LibraryAdminService(ConfigurationManager.AppSettings["server"]);
         private Gadget selectedGadget;
         private String option;
 
@@ -32,12 +32,17 @@ namespace Gadgeothek.ViewModel
         public ObservableCollection<Gadget> AllGadgets
         {
             get { return allGadgets; }
-            set { allGadgets = value; }
+            set {
+                foreach (Gadget gadget in value)
+                {
+                    allGadgets.Add(gadget);
+                }
+            }
         }
 
         public Gadget SelectedGadget {
             get { return selectedGadget; }
-            set { selectedGadget = value; }
+            set { selectedGadget = value;  }
         }
 
         public String Option {
@@ -48,14 +53,14 @@ namespace Gadgeothek.ViewModel
         public void toDeleteGadget(Gadget gadget)
         {
             allGadgets.Remove(gadget);
-            //service.DeleteGadget(gadget);
+            service.DeleteGadget(gadget);
         }
 
         public void addGadget(Gadget gadget)
         {
             gadget = SelectedGadget;
             AllGadgets.Add(gadget);
-           //service.AddGadget(gadget);
+            service.AddGadget(gadget);
             
         }
 
@@ -63,7 +68,8 @@ namespace Gadgeothek.ViewModel
         {
             Gadget gadget = SelectedGadget;
             AllGadgets.Insert(allGadgets.IndexOf(modifiedGadget), gadget);
-            //service.UpdateGadget(test);
+            allGadgets.Remove(modifiedGadget);
+            service.UpdateGadget(gadget);
         }
 
         public void setOptions(Gadget modifiedGadget, String buttonName)

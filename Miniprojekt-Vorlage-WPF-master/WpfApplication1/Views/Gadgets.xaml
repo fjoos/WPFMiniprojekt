@@ -7,49 +7,17 @@
         mc:Ignorable="d"
         DataContext="{Binding Path=ViewModelGadgets }">
     <StackPanel>
-        <ListView Margin="10" Name="gadgetView" ItemsSource="{Binding AllGadgets}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="50">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox Tag="{Binding ID}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Name}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Name">Name</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
-
-                    <GridViewColumn  Width="120" DisplayMemberBinding="{Binding Price}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Price">Price</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Condition}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Price">Condition</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding InventoryNumber}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Price">InventoryNumber</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Manufacturer}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Price">Manufacturer</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Margin="10" Name="gadgetView" ItemsSource="{Binding AllGadgets}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Tag="{Binding ID}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

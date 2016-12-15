@@ -41,6 +41,7 @@ namespace Gadgeothek.Views
             {
                 gadgetModel.saveGadget(modifiedGadget);
             }
+            DialogResult = true;
         }
     }
 }
